@@ -608,6 +608,64 @@
   \end{tabular*}%
 }
 
+
+% Define an entry of cv information
+% Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
+\newcommand*{\experience}[5]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \ifempty{#2#3}
+      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
+      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
+  \end{tabular*}%
+}
+
+
+% Define an entry of cv information
+% Usage: \cventry{<kunde>}{<projekter>}
+\newcommand*{\kunde}[1]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+  {\entrytitlestyle{#1}}\\
+  \end{tabular*}%
+}
+
+% Define an entry of cv information
+% Usage: \project{<navn>}{<dato>}{<desc>}{<tech>}
+\newcommand*{\project}[4]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+  \ifempty{#2#3}
+    {}
+    {\entrypositionstyle{#1} & \entrydatestyle{#2} \\}
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#3} \break \subentrylocationstyle{Teknologier og verktøy: #4} \hfill \break}
+  \end{tabular*}%
+}
+
+
+
+% Define an entry of cv information
+% Usage: \employer{<navn>}{<dato>}{<desc>}
+\newcommand*{\employer}[3]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+  \ifempty{#2#3}
+  {}
+  {\entrypositionstyle{#1} & \entrydatestyle{#2} \\}
+  \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#3} \hfill \break}
+  \end{tabular*}%
+}
+
 % Define an environment for cvsubentry
 \newenvironment{cvsubentries}{%
   \begin{center}
@@ -657,7 +715,7 @@
   \begin{center}
     \setlength\tabcolsep{1ex}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9}}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.95}}}
 }{%
     \end{tabular*}
   \end{center}
@@ -665,7 +723,7 @@
 % Define a line of cv information(skill)
 % Usage: \cvskill{<type>}{<skillset>}
 \newcommand*{\cvskill}[2]{%
-	\skilltypestyle{#1} & \skillsetstyle{#2} \\
+	\skillsetstyle{#2} & \skilltypestyle{#1} \\
 }
 
 % Define an environment for cvitems(for cventry)
@@ -674,7 +732,7 @@
   \begin{justify}
   \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
     \setlength{\parskip}{0pt}
-    \renewcommand{\labelitemi}{\bullet}
+    \renewcommand{\labelitemi}{}
 }{%
   \end{itemize}
   \end{justify}
